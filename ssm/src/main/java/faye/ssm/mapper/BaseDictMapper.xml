@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="faye.ssm.mapper.BaseDictMapper">
+	<select id="findByDictTypeCode" parameterType="String" resultType="BaseDict">
+		SELECT
+			*
+		FROM
+			base_dict
+		WHERE
+			dict_type_code = #{dict_type_code}
+	</select>
+	<select id="findByDictId" parameterType="String" resultType="BaseDict">
+		SELECT
+			*
+		FROM
+			base_dict
+		WHERE
+			dict_id = #{dict_id}
+	</select>
+</mapper>

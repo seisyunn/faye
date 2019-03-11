@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="faye.ssm.mapper.CustomerMapper">
+	<select id="findCustomerPageByNameOrSourceOrIndustryOrLevel" parameterType="Map" resultType="Customer">
+		SELECT
+			*
+		FROM
+			customer
+		<where>
+			<if test="name != null and name != '' ">
+				and cust_name like '%${name}%'
+			</if>
+			<if test="source != null and source != '' ">
+				and cust_source = #{source}
+			</if>
+			<if test="industry != null and industry != '' ">
+				and cust_industry = #{industry}
+			</if>
+			<if test="level != null and level != '' ">
+				and cust_level = #{level}
+			</if>
+		</where>
+		LIMIT #{index},#{pageSize}
+	</select>
+	<select id="customerCount" parameterType="Map" resultType="Integer">
+		SELECT
+			count(*)
+		FROM
+			customer
+		<where>
+			<if test="name != null and name != '' ">
+				and cust_name like '%${name}%'
+			</if>
+			<if test="source != null and source != '' ">
+				and cust_source = #{source}
+			</if>
+			<if test="industry != null and industry != '' ">
+				and cust_industry = #{industry}
+			</if>
+			<if test="level != null and level != '' ">
+				and cust_level = #{level}
+			</if>
+		</where>
+	</select>
+	<select id="findCustomerById" parameterType="Integer" resultType="Customer">
+		SELECT
+			*
+		FROM
+			customer
+		WHERE
+			cust_id = #{cust_id}
+	</select>
+</mapper>
